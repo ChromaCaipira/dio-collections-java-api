@@ -5,25 +5,25 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class CadastroProdutos {
-    private Set<Produto> produtos;
+    private Set<Produto> produtoSet;
 
     public CadastroProdutos() {
-        this.produtos = new HashSet<>();
+        this.produtoSet = new HashSet<>();
     }
 
     public void adicionarProduto(long codigo, String nome, double preco, int quantidade) {
-        produtos.add(new Produto(codigo, nome, preco, quantidade));
+        produtoSet.add(new Produto(codigo, nome, preco, quantidade));
     }
     public Set<Produto> exibirProdutosPorNome() {
         // Dessa vez, utiliza-se o TreeSet para organizar o conjunto em determinada ordem
-        Set<Produto> produtosPorNome = new TreeSet<>(produtos);
+        Set<Produto> produtosPorNome = new TreeSet<>(produtoSet);
         return produtosPorNome;
     }
     public Set<Produto> exibirProdutosPorPreco() {
         // Esse TreeSet utiliza do Comparator criado para saber a forma que deverá organizar esse conjunto
         Set<Produto> produtosPorPreco = new TreeSet<>(new ComparatorPorPreco());
         // Adiciona todos os produtos desordenados nesse TreeSet organizado
-        produtosPorPreco.addAll(produtos);
+        produtosPorPreco.addAll(produtoSet);
         return produtosPorPreco;
     }
 

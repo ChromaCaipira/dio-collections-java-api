@@ -4,21 +4,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class AgendaContatos {
-    private Set<Contato> contatos;
+    private Set<Contato> contatoSet;
 
     public AgendaContatos() {
-        this.contatos = new HashSet<>();
+        this.contatoSet = new HashSet<>();
     }
 
     public void adicionarContato(String nome, int numero) {
-        contatos.add(new Contato(nome, numero));
+        contatoSet.add(new Contato(nome, numero));
     }
     public void exibirContatos() {
-        System.out.println(contatos);
+        System.out.println(contatoSet);
     }
     public Set<Contato> pesquisarPorNome(String nome) {
         Set<Contato> contatosPorNome = new HashSet<>();
-        for (Contato c : contatos) {
+        for (Contato c : contatoSet) {
             // Checa se o nome do contato COMEÇA com o nome inserido, não necessariamente o mesmo nome
             if (c.getNome().startsWith(nome)) {
                 contatosPorNome.add(c);
@@ -28,12 +28,16 @@ public class AgendaContatos {
     }
     public Contato atualizarNumeroContato(String nome, int novoNumero) {
         Contato contatoAtualizado = null;
-        for (Contato c : contatos) {
-            if (c.getNome().equalsIgnoreCase(nome)) {
-                c.setNumero(novoNumero);
-                contatoAtualizado = c;
-                break;
+        if (!contatoSet.isEmpty()) {
+            for (Contato c : contatoSet) {
+                if (c.getNome().equalsIgnoreCase(nome)) {
+                    c.setNumero(novoNumero);
+                    contatoAtualizado = c;
+                    break;
+                }
             }
+        } else {
+            System.err.println("[ERRO -- Agenda vazia!]");
         }
         return contatoAtualizado;
     }

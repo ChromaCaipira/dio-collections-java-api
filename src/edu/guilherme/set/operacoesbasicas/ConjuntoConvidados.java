@@ -22,6 +22,8 @@ public class ConjuntoConvidados {
                     break;
                 }
             }
+        } else {
+            System.err.println("[ERRO -- Não há convidados!]");
         }
         convidados.remove(convidadoParaRemover);
     }
@@ -41,7 +43,7 @@ public class ConjuntoConvidados {
         conjuntoConvidados.adicionarConvidado("Maria", 1235);
         conjuntoConvidados.adicionarConvidado("Pedro", 1236);
 
-        // Convidado com código clonado
+        // Convidado com código clonado não será armazenado
         conjuntoConvidados.adicionarConvidado("Luisa", 1235);
         
         conjuntoConvidados.exibirConvidados();
@@ -52,5 +54,13 @@ public class ConjuntoConvidados {
 
         conjuntoConvidados.exibirConvidados();
         System.out.println("[NÚMERO DE CONVIDADOS]: " + conjuntoConvidados.contarConvidados());
+        System.out.println("==============================");
+
+        conjuntoConvidados.removerConvidadoPorCodigoConvite(1235);
+        conjuntoConvidados.removerConvidadoPorCodigoConvite(1236);
+        // Não há mais convidados, logo retornará o "erro"
+        conjuntoConvidados.removerConvidadoPorCodigoConvite(1237);
+
+        conjuntoConvidados.exibirConvidados();
     }
 }
